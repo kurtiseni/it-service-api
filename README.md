@@ -1,7 +1,7 @@
 ## Description
 
-IT service is developed with [NestJS](https://github.com/nestjs/nest) framework.<br>
-A software for the management of assistance services for IT products.
+IT service is developed with [NestJS](https://github.com/nestjs/nest) framework. A software for the management of assistance services for IT products.<br>
+This API simplifies the process of managing assistance services by allowing businesses to organize their customer support tasks efficiently.
 
 ## Installation
 
