@@ -37,20 +37,6 @@ username: it2
 password: 123
 ```
 
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
 ## License
 
 This API is is [MIT licensed](LICENSE) open source project.
