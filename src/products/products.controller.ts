@@ -6,6 +6,7 @@ import {
   Post,
   UseGuards,
   Request,
+  Delete,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -19,6 +20,11 @@ import { ProductsService } from './products.service';
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
+
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<Product> {
+    return this.productsService.findOne(+id);
+  }
 
   @Post()
   create(
@@ -37,13 +43,8 @@ export class ProductsController {
     return this.productsService.findAll(req.user, limit, page);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string): Promise<Product> {
-    return this.productsService.findOne(+id);
+  @Delete(':id')
+  remove(@Param('id') id: number): Promise<void> {
+    return this.productsService.remove(id);
   }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string): Promise<void> {
-  //   return this.productsService.remove(id);
-  // }
 }

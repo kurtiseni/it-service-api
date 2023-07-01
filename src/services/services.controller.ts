@@ -21,6 +21,11 @@ import { ServicesService } from './services.service';
 export class ServicesController {
   constructor(private readonly servicesService: ServicesService) {}
 
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<Service> {
+    return this.servicesService.findOne(+id);
+  }
+
   @Post()
   create(
     @Request() req,
@@ -36,11 +41,6 @@ export class ServicesController {
     @Param('page') page: number,
   ): Promise<Service[]> {
     return this.servicesService.findAll(req.user, limit, page);
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string): Promise<Service> {
-    return this.servicesService.findOne(+id);
   }
 
   // @Delete(':id')

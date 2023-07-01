@@ -112,8 +112,10 @@ export class ProductsService {
     return this.productsRepository.save(product);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.productsRepository.delete(id);
+  async remove(id: number): Promise<void> {
+    const product = await this.findProduct(id);
+
+    if (product) await this.productsRepository.delete(id);
   }
 
   private async findProduct(id: number): Promise<Product> {
