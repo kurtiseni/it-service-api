@@ -7,7 +7,12 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiBearerAuth,
+  ApiExcludeEndpoint,
+} from '@nestjs/swagger';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { AuthLoginDto } from './auth/dto/auth-login.dto';
@@ -34,6 +39,7 @@ export class AppController {
     return req.user;
   }
 
+  @ApiExcludeEndpoint()
   @Get()
   getHello(): string {
     return this.appService.getHello();
