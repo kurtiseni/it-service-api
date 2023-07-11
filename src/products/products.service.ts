@@ -1,6 +1,7 @@
 import {
   ForbiddenException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,6 +10,7 @@ import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './product.entity';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -110,6 +112,17 @@ export class ProductsService {
     product.userId = createProductDto.userId;
 
     return this.productsRepository.save(product);
+  }
+
+  async update(id: number, updateProduct: UpdateProductDto) {
+
+    try {
+      await this.productsRepository.update(id, updateProduct)
+    } catch (error) {
+      throw new InternalServerErrorException('Unable to update with provided fields!')
+    }
+
+    return await this.findProduct(id);
   }
 
   async remove(id: number): Promise<void> {

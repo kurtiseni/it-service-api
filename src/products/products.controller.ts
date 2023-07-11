@@ -7,12 +7,14 @@ import {
   UseGuards,
   Request,
   Delete,
+  Patch,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './product.entity';
 import { ProductsService } from './products.service';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @ApiTags('products')
 @ApiBearerAuth()
@@ -34,6 +36,11 @@ export class ProductsController {
     return this.productsService.create(createProduct, req.user);
   }
 
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateProduct: UpdateProductDto) {
+    return this.productsService.update(+id, updateProduct);
+  }
+
   @Get(':limit?/:page?')
   findAll(
     @Request() req,
@@ -44,7 +51,7 @@ export class ProductsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number): Promise<void> {
-    return this.productsService.remove(id);
+  remove(@Param('id') id: string): Promise<void> {
+    return this.productsService.remove(+id);
   }
 }
