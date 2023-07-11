@@ -38,6 +38,8 @@ username: it2
 password: 123
 ```
 
-## License
+## Screenshot
+![](../it-service-api/screenshot.webp)
 
+## License
 This API is is [MIT licensed](LICENSE) open source project.
