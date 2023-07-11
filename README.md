@@ -39,7 +39,7 @@ password: 123
 ```
 
 ## Screenshot
-![](../it-service-api/screenshot.webp)
+![](screenshot.webp)
 
 ## License
 This API is is [MIT licensed](LICENSE) open source project.
